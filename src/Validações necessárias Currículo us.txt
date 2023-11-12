@@ -1,0 +1,24 @@
+Validações necessárias Currículo usuário - >
+Nome não pode ser vazio 
+data de nascimento nao pode ser vazio
+Cargo nao pode ser vazio
+se pode se cadastrar para um cargo de cada vez
+Cargos serão adicionados pelo admin
+Descricao nao pode ser vazio
+Descricao Com limite de caracteres
+Telefone nao pode ser vazio
+E-mail nao pode ser yazio
+E-mail chave Primaria
+
+ Usuário->
+usuario não pode ser vazio - OK
+senha nao pode ser sequencial
+setha nao pode ser apenas numerica
+criptografar a senha - OK
+super usuario?
+usuários com permissões de adm
+forma de recuperar a senha
+
+Rede social - >
+Cada usuário terá permissao de postar fotos e artiqos
+Talvez um banco de dados NoSQL para as postagem

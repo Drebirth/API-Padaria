@@ -1,7 +1,7 @@
 Validações necessárias Currículo usuário - >
-Nome não pode ser vazio 
-data de nascimento nao pode ser vazio
-Cargo nao pode ser vazio
+Nome não pode ser vazio -- OK
+data de nascimento nao pode ser vazio -- OK
+Cargo nao pode ser vazio -- OK
 se pode se cadastrar para um cargo de cada vez
 Cargos serão adicionados pelo admin
 Descricao nao pode ser vazio
@@ -22,3 +22,4 @@ forma de recuperar a senha
 Rede social - >
 Cada usuário terá permissao de postar fotos e artiqos
 Talvez um banco de dados NoSQL para as postagem
+

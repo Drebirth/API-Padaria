@@ -1,7 +1,7 @@
 package com.api.padaria.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "CURRICULOS")
@@ -11,13 +11,13 @@ public class Curriculo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
+    @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
     private String nomeCompleto;
 
-    @NotEmpty
+    @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
     private String dataNascimento;
 
-    @NotEmpty
+    @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
     private String bairro;
 
     private String faleSobreVoce;
@@ -25,18 +25,14 @@ public class Curriculo {
     @OneToOne
     private Cargo cargo;
 
+    @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
     private String telefone;
 
+    @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
+    @Column(unique = true)
     private String email;
 
-    public Curriculo(String nomeCompleto, String dataNascimento, String bairro,String faleSobreVoce,Cargo cargo, String telefone, String email) {
-        this.nomeCompleto = nomeCompleto;
-        this.dataNascimento = dataNascimento;
-        this.bairro = bairro;
-        this.cargo = cargo;
-        this.telefone = telefone;
-        this.email = email;
-        this.faleSobreVoce = faleSobreVoce;
+    public Curriculo() {
     }
 
     public Long getId() {

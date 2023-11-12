@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class CurriculoService {
@@ -23,14 +23,31 @@ public class CurriculoService {
         this.cargoService = cargoService;
     }
 
-    public List<Curriculo> listar(){
+    public List<Curriculo> listarCurriculos(){
         return service.findAll();
     }
 
     public Curriculo salvar(Curriculo c,Long id){
-        c.setCargo(cargoService.buscarCargo(id));
+        var base = buscarPorCurriculo(c.getEmail());
+        if(base.getEmail().isEmpty()){
+            c.setEmail(c.getEmail());
+        } else if ((base.getCargo() == cargoService.buscarCargo(id))) {
+            throw new RuntimeException("Usuário já se encontra cadastro no sistema");
+        }
+        else{
+            c.setCargo(cargoService.buscarCargo(id));
+
+        }
         return service.save(c);
     }
+
+
+    private Curriculo buscarPorCurriculo(String email){
+        return service.findByEmail(email);
+    }
+
+
+
 
 
 }

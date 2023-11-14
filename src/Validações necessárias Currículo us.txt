@@ -2,15 +2,15 @@ Validações necessárias Currículo usuário - >
 Nome não pode ser vazio -- OK
 data de nascimento nao pode ser vazio -- OK
 Cargo nao pode ser vazio -- OK
-se pode se cadastrar para um cargo de cada vez
+se pode se cadastrar para um cargo de cada vez -- OK
 Cargos serão adicionados pelo admin
 Descricao nao pode ser vazio
 Descricao Com limite de caracteres
 Telefone nao pode ser vazio
-E-mail nao pode ser yazio
-E-mail chave Primaria
+E-mail nao pode ser yazio -- OK
 
- Usuário->
+
+Usuário->
 usuario não pode ser vazio - OK
 senha nao pode ser sequencial
 setha nao pode ser apenas numerica

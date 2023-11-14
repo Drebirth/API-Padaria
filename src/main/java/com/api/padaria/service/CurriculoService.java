@@ -28,22 +28,27 @@ public class CurriculoService {
     }
 
     public Curriculo salvar(Curriculo c,Long id){
-        var base = buscarPorCurriculo(c.getEmail());
-        if(base.getEmail().isEmpty()){
-            c.setEmail(c.getEmail());
-        } else if ((base.getCargo() == cargoService.buscarCargo(id))) {
-            throw new RuntimeException("Usuário já se encontra cadastro no sistema");
+        var testeEmail = c.getEmail();
+        var testeCargo = cargoService.buscarCargo(id);
+        c.setCargo(cargoService.buscarCargo(id));
+        if(testeEmail.equals(busca(c.getEmail())) && testeCargo.equals(c.getCargo()) ){
+            throw new RuntimeException("Email cadastrado");
         }
-        else{
-            c.setCargo(cargoService.buscarCargo(id));
 
-        }
         return service.save(c);
+
+
+
     }
 
+    public Curriculo busca(String email){
+        return buscarPorCurriculo(email);
+    }
 
     private Curriculo buscarPorCurriculo(String email){
-        return service.findByEmail(email);
+         return service.findByEmail(email);
+
+
     }
 
 

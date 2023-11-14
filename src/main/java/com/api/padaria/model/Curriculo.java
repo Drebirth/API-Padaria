@@ -29,7 +29,6 @@ public class Curriculo {
     private String telefone;
 
     @NotBlank(message = "Não é permitido uma valor vazio ou nulo!")
-    @Column(unique = true)
     private String email;
 
     public Curriculo() {

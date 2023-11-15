@@ -1,6 +1,5 @@
 package com.api.padaria.service;
 
-import com.api.padaria.model.Cargo;
 import com.api.padaria.model.Curriculo;
 import com.api.padaria.repository.CurriculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class CurriculoService {
         var testeEmail = c.getEmail();
         var testeCargo = cargoService.buscarCargo(id);
         c.setCargo(cargoService.buscarCargo(id));
-        if(testeEmail.equals(busca(c.getEmail())) && testeCargo.equals(c.getCargo()) ){
+        if(testeEmail.equals(buscar(c.getEmail())) && testeCargo.equals(c.getCargo()) ){
             throw new RuntimeException("Email cadastrado");
         }
 
@@ -41,7 +40,7 @@ public class CurriculoService {
 
     }
 
-    public Curriculo busca(String email){
+    public Curriculo buscar(String email){
         return buscarPorCurriculo(email);
     }
 

@@ -26,7 +26,7 @@ public class CurriculoController {
 
     @RequestMapping("/teste/{email}")
     public Curriculo procurar(@PathVariable String email){
-        return service.busca(email);
+        return service.buscar(email);
     }
 
 

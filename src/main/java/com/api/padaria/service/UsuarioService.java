@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -26,13 +25,32 @@ public class UsuarioService {
     public void salvar(Usuario u) throws NoSuchAlgorithmException {
 
         if (u.getUserName().isEmpty() && u.getSenha().isEmpty() || u.getSenha().isBlank() ){
-            //throw new RuntimeException("Usuário e senha não podem ser vazios!");
+            throw new RuntimeException("Usuário e senha não podem ser vazios!");
 
         }else{
             var senha = criptografia(u.getSenha());
             u.setSenha(senha);
             service.save(u);
         }
+    }
+
+    public Usuario login(Usuario u) throws NoSuchAlgorithmException {
+        return loginUsuario(u);
+    }
+
+    public Usuario teste(String usuario){
+        return service.findByUserName(usuario);
+    }
+
+    private Usuario loginUsuario(Usuario usuario) throws NoSuchAlgorithmException {
+       Usuario teste = service.findByUserName(usuario.getUserName());
+       usuario.setSenha(criptografia(usuario.getSenha()));
+       if(teste.getUserName().equals(usuario.getUserName()) && teste.getSenha().equals(usuario.getSenha())){
+           System.out.println("Acesso liberado!");
+       }else{
+           throw new RuntimeException("Usuário não cadastrado no sistema" );
+       }
+            return teste;
     }
 
     private String criptografia(String texto) throws NoSuchAlgorithmException {

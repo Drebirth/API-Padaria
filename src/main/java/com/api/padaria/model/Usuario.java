@@ -10,15 +10,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "USUARIO")
+    @Column(name = "USUARIO", unique = true)
     private String userName;
     @Column(name = "SENHA")
     private String senha;
 
-    public Usuario(Long id, String userName, String senha) {
-        this.id = id;
-        this.userName = userName;
-        this.senha = senha;
+    public Usuario() {
     }
 
     public String getUserName() {

@@ -28,7 +28,7 @@ public class CargoController {
         return service.salvar(c);
     }
 
-    @RequestMapping("/um/{id}")
+    @RequestMapping("/{id}")
     public Cargo buscarUm(@PathVariable Long id){
         return service.buscarCargo(id);
     }

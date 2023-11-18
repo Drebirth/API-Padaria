@@ -1,11 +1,13 @@
 package com.api.padaria.service;
 
+
 import com.api.padaria.model.Curriculo;
 import com.api.padaria.repository.CurriculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 
 @Service
@@ -27,16 +29,15 @@ public class CurriculoService {
     }
 
     public Curriculo salvar(Curriculo c,Long id){
-        var testeEmail = c.getEmail();
-        var testeCargo = cargoService.buscarCargo(id);
-        c.setCargo(cargoService.buscarCargo(id));
-        if(testeEmail.equals(buscar(c.getEmail())) && testeCargo.equals(c.getCargo()) ){
-            throw new RuntimeException("Email cadastrado");
-        }
+            var testeEmail = c.getEmail();
+            var testeCargo = cargoService.buscarCargo(id);
+            c.setCargo(cargoService.buscarCargo(id));
+            validaCurriculo(c);
 
-        return service.save(c);
-
-
+            if (testeEmail.equals(buscar(c.getEmail())) && testeCargo.equals(c.getCargo())) {
+                throw new RuntimeException("Email cadastrado");
+            }
+            return service.save(c);
 
     }
 
@@ -46,7 +47,20 @@ public class CurriculoService {
 
     private Curriculo buscarPorCurriculo(String email){
          return service.findByEmail(email);
+    }
 
+    private Curriculo validaCurriculo(Curriculo curriculo){
+
+            if(curriculo.getNomeCompleto().isBlank()){
+                throw new RuntimeException("Nome não pode ser vazio!");
+            }   else if (curriculo.getBairro().isEmpty()) {
+                throw new RuntimeException("Verifique o Bairro pois ele não pode ser vazio!");
+            } else if (curriculo.getTelefone().isEmpty()) {
+                throw new RuntimeException("Verifique o telefone ele não pode ser vazio!");
+            } else if (!curriculo.getEmail().contains("@")) {
+                throw new RuntimeException("Verifique o e-mail");
+            }
+            return curriculo;
 
     }
 

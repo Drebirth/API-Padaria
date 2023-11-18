@@ -24,14 +24,16 @@ public class UsuarioService {
 
     public void salvar(Usuario u) throws NoSuchAlgorithmException {
 
-        if (u.getUserName().isEmpty() && u.getSenha().isEmpty() || u.getSenha().isBlank() ){
-            throw new RuntimeException("Usuário e senha não podem ser vazios!");
 
-        }else{
-            var senha = criptografia(u.getSenha());
-            u.setSenha(senha);
-            service.save(u);
-        }
+            if (u.getUserName().isEmpty() && u.getSenha().isEmpty() || u.getSenha().isBlank()) {
+                throw new RuntimeException("Usuário ou senha não pode ser vazios!");
+
+            } else {
+                var senha = criptografia(u.getSenha());
+                u.setSenha(senha);
+                service.save(u);
+            }
+
     }
 
     public Usuario login(Usuario u) throws NoSuchAlgorithmException {
